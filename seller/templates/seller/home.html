@@ -1,0 +1,402 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Grab_IT</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <!-- Favicons -->
+  <!--<link href="{% static 'img/favicon.png' %}" rel="icon">-->
+  <!--<link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">-->
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800|Montserrat:300,400,700"
+    rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="{% static 'lib/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/ionicons/css/ionicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/magnific-popup/magnific-popup.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/ionicons/css/ionicons.min.css' %}" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+  <!-- analytics -->
+
+  <script  src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.dev.js"></script>
+  <script src="{% static './util.js' %}"></script>
+    <!-- <script>
+var  socket = io('https://cbkm-analytics-services.herokuapp.com');
+function  wow() {
+data={
+appID:"Grab_IT15665642939041",
+action:"myaction",
+myname:"myname"
+}
+socket.emit('save', data);
+window.location.href = "index.html"
+}
+</script> -->
+  <!-- =======================================================
+    Theme Name: Reveal
+    Theme URL: https://bootstrapmade.com/reveal-bootstrap-corporate-template/
+    Author: BootstrapMade.com
+    License: https://bootstrapmade.com/license/
+  ======================================================= -->
+</head>
+
+<body id="body" onload="send('MainPage')">
+
+  <!--==========================
+    Top Bar
+  ============================-->
+  <section id="topbar" class="d-none d-lg-block">
+    <div class="container clearfix">
+      <div class="contact-info float-left">
+        <i class="fa fa-envelope-o"></i> <a href="mailto:contact@example.com">thecbkm@gmail.com</a>
+        <i class="fa fa-phone"></i> +91 9340573858
+        <i class="fa fa-phone"></i> +91 9131471942
+        <i class="fa fa-phone"></i> +91 8516971855
+      </div>
+      <div class="social-links float-right">
+        <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+        <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+        <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+        <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+        <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!--==========================
+    Header
+  ============================-->
+  <header id="header">
+    <div class="container">
+
+      <div id="logo" class="pull-left">
+        <h1><a href="#body" class="scrollto">Grab<span>IT</span></a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="#body"><img src="img/logo.png" alt="" title="" /></a>-->
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="#body">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#services">CBKM</a></li>
+          <!-- <li><a href="#portfolio">Portfolio</a></li> -->
+          <li><a href="#team">Team</a></li>
+
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+  </header><!-- #header -->
+
+  <!--==========================
+    Intro Section
+  ============================-->
+  <section id="intro">
+
+    <div class="intro-content">
+      <h2>Grab <span>your stuff</span><br>from here!</h2>
+      <div>
+        <a  onclick="send('IWSELL')" href='/seller/' class="btn-get-started scrollto">I want to Sell</a>
+        <a   onclick="send('IWBUY')" href='/buyer/' class="btn-projects scrollto">I want to Buy</a>
+      </div>
+      <div class="abc">
+        <a  href='/seller/' class="btn-get-started scrollto" style="background-color: rgb(194, 202, 202); color:black;">Hits on site : {{count}}</a>
+       
+      </div>
+      <div class="abc">
+        <a  href='/seller/' class="btn-get-started scrollto" style="background-color: rgb(194, 202, 202); color:black;">Users : {{users}}</a>
+       
+      </div>
+    </div>
+
+    <div id="intro-carousel" class="owl-carousel">
+      <div class="item" style="background-image: url('img/intro-carousel/1.jpg');"></div>
+      <div class="item" style="background-image: url('img/intro-carousel/2.jpg');"></div>
+      <div class="item" style="background-image: url('img/intro-carousel/3.jpg');"></div>
+      <div class="item" style="background-image: url('img/intro-carousel/4.jpg');"></div>
+      <div class="item" style="background-image: url('img/intro-carousel/5.jpg');"></div>
+    </div>
+
+  </section><!-- #intro -->
+
+  <main id="main">
+
+    <!--==========================
+      About Section
+    ============================-->
+    <section id="about" class="wow fadeInUp">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 about-img">
+            <img src="{% static './img/grab.png' %}"  height="300px" alt="">
+          </div>
+
+          <div class="col-lg-6 content">
+            <h2>Strange but Free <br> Buy & Sell Platform</h2>
+            <h3>Specially Developed for College Students by College Students.</h3>
+
+            <ul>
+              <li><i class="ion-android-checkmark-circle"></i> You can easily add your stuff & Sell it to Junior.</li>
+              <li><i class="ion-android-checkmark-circle"></i>You can Buy whatever you like from your beloved Seniors.
+              
+              </li>
+              <li><i class="ion-android-checkmark-circle"></i> As a junior you get a wide varity to choose from.</li>
+              <li><i class="ion-android-checkmark-circle"></i> Best part is you are getting the stuff from your seniors, so no worries, you don't need to give a second thought about the quality.</li>
+
+              <li><i class="ion-android-checkmark-circle"></i>And also best part is its Absolutely FREE , No Commission ,No
+                Subscription.</li>
+              <li><i class="ion-android-checkmark-circle"></i> Designed & Developed by CBKM, so don't panic if you get amazed.
+                !! </li>
+
+            </ul>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <!-- #about -->
+
+    <!--==========================
+      Services Section
+    ============================-->
+    <section id="services">
+      <div class="container">
+        <div class="section-header">
+          <h2>CBKM</h2>
+          <section id=about class="wow fadeInUp">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-6 about-img">
+                  <img src="{% static './img/logo.jpeg' %}" height="300px" alt="">
+                </div>
+
+                <div class="col-lg-6 content">
+                  <h2> <br> </h2>
+                  <h3></h3>
+
+                  <ul>
+                    <li><i class="ion-android-checkmark-circle"></i> Astonishing Successful Product over past few months</li>
+                    <li><i class="ion-android-checkmark-circle"></i>Following the concepts and art of CBKM</li>
+                    <li><i class="ion-android-checkmark-circle"></i> Contributing to the changed world by our innovative
+                      software solutions</li>
+                    <li><i class="ion-android-checkmark-circle"></i> Helping people to be happy and stay Successful</li>
+
+                  </ul>
+
+                </div>
+              </div>
+
+            </div>
+          </section>
+        </div>
+
+
+
+      </div>
+    </section>
+
+
+
+    <!--==========================
+      Our Team Section
+    ============================-->
+    <section id="team" class="wow fadeInUp">
+      <div class="container">
+        <div class="section-header">
+          <h2>Our Team</h2>
+         <center> <h3>DEVELOPERS</h3></center>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-6">
+            <div class="member">
+              <div class="pic"><img src="{% static './img/profile-pic.jpeg' %}" height="200px" alt=""></div>
+              <div class="details">
+                <h4>Rajaram Joshi</h4>
+                <span>CBKM</span>
+                <div class="social">
+                  <a href=""><i class="fa fa-twitter"></i></a>
+                  <a href=""><i class="fa fa-facebook"></i></a>
+                  <a href=""><i class="fa fa-google-plus"></i></a>
+                  <a href=""><i class="fa fa-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="member">
+              <div class="pic"><img src="{% static './img/prakhar.jpg' %}" width="200px" height="200px" alt=""></div>
+              <div class="details">
+                <h4>Prakhar Mangal</h4>
+                <span>CBKM</span>
+                <div class="social">
+                  <a href=""><i class="fa fa-twitter"></i></a>
+                  <a href=""><i class="fa fa-facebook"></i></a>
+                  <a href=""><i class="fa fa-google-plus"></i></a>
+                  <a href=""><i class="fa fa-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="member">
+              <div class="pic"><img src="{% static './img/ram.jpeg' %}" height="200px"  alt=""></div>
+              <div class="details">
+                <h4>Ram Birla</h4>
+                <span>CBKM</span>
+                <div class="social">
+                  <a href=""><i class="fa fa-twitter"></i></a>
+                  <a href=""><i class="fa fa-facebook"></i></a>
+                  <a href=""><i class="fa fa-google-plus"></i></a>
+                  <a href=""><i class="fa fa-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+      </div>
+    </section><!-- #team -->
+
+    <!--==========================
+      Contact Section
+    ============================-->
+    <section id="contact" class="wow fadeInUp">
+      <div class="container">
+        <div class="section-header">
+          <h2>Contact Us</h2>
+          <p>Feel free to share your Ideas </p>
+        </div>
+
+        <div class="row contact-info">
+
+          <div class="col-md-4">
+            <div class="contact-address">
+              <i class="ion-ios-location-outline"></i>
+              <h3>Address</h3>
+              <address>Indore , M.P.,India</address>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="contact-phone">
+              <i class="ion-ios-telephone-outline"></i>
+              <h3>Phone Number</h3>
+              <p><a href="tel:+919340573858">+91 9340 5738 58</a></p>
+              <p><a href="tel:+918516971855">+91 8516 9718 55</a></p>
+              <p><a href="tel:+919131471942">+91 9131 4719 42</a></p>
+
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="contact-email">
+              <i class="ion-ios-email-outline"></i>
+              <h3>Email</h3>
+              <p><a href="mailto:thecbakm@gmail.com">thecbkm@gmail.com</a></p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="container mb-4">
+        <iframe
+          src="https://maps.google.com/maps?q=medicaps&t=&z=13&ie=UTF8&iwloc=&output=embed"
+          width="100%" height="380" frameborder="0" style="border:0" allowfullscreen></iframe>
+      </div>
+      <div class="container">
+        <div class="form">
+          <div id="sendmessage">Your message has been sent. Thank you!</div>
+          <div id="errormessage"></div>
+          <form action="" method="post" role="form" class="contactForm">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name"
+                  data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                <div class="validation"></div>
+              </div>
+              <div class="form-group col-md-6">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email"
+                  data-rule="email" data-msg="Please enter a valid email" />
+                <div class="validation"></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject"
+                data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+              <div class="validation"></div>
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" name="message" rows="5" data-rule="required"
+                data-msg="Please write something for us" placeholder="Message"></textarea>
+              <div class="validation"></div>
+            </div>
+            <div class="text-center"><button type="submit">Send Message</button></div>
+          </form>
+        </div>
+
+      </div>
+    </section><!-- #contact -->
+
+  </main>
+
+  <!--==========================
+    Footer
+  ============================-->
+  <footer id="footer">
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong>CBKM</strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+
+        Designed by CBKM
+      </div>
+    </div>
+  </footer><!-- #footer -->
+
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+  <!-- JavaScript Libraries -->
+  <script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'lib/jquery/jquery-migrate.min.js' %}"></script>
+  <script src="{% static 'lib/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+  <script src="{% static 'lib/superfish/hoverIntent.js' %}"></script>
+  <script src="{% static 'lib/superfish/superfish.min.js' %}"></script>
+  <script src="{% static 'lib/wow/wow.min.js' %}"></script>
+  <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'lib/magnific-popup/magnific-popup.min.js' %}"></script>
+  <script src="{% static 'lib/sticky/sticky.js' %}"></script>
+
+
+
+  <!-- Template Main Javascript File -->
+  <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>

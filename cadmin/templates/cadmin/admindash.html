@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Admin</title>
+  </head>
+  <body>
+    <a href="/logout/">logout</a>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Seller Name</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+            <th scope="col">Details</th>
+          
+          </tr>
+        </thead>
+        <tbody>
+          {% for product in products %}
+
+          <!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Launch demo modal
+  </button> -->
+  
+  <!-- Modal -->
+  <div class="modal fade" id="example{{forloop.counter}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <img src="/media/{{product.image}}" class="card-img-top img-thumbnail mt-2 mx-auto" alt="Responsive image" style="height: 8rem; width:8rem;">
+        <div class="modal-body">
+          Seller Name: {{product.seller.user.username}}<br>
+          Email: {{product.seller.user.email}}<br>
+          Contact: {{product.seller.contact}}<br>
+          Branch: {{product.seller.branch}}<br>
+          Category: {{product.category.name}}<br>
+          Subcategory: {{product.subcategory.name}}<br>
+          Product Name: {{product.name}}<br>
+          <b style="color: green;">Product Price: {{product.price}} ₹<br></b>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+          {% if product.status == -1 %}
+          <tr class="bg-danger" style="color: rgb(255, 255, 255)" >
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{product.name}}</td>
+            <td>{{product.seller.user.username}}</td>
+            <td>{{product.status}}</td>
+            <td><button type="button" onclick="window.location.href='{% url 'productDetails' product.id %}'" class="btn btn-warning" >Approve</button></td>
+            <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#example{{forloop.counter}}">Details</button></td>
+          </tr>
+          {% elif product.status == 1 %}
+          <tr class="bg-success">
+              <th scope="row">{{forloop.counter}}</th>
+              <td>{{product.name}}</td>
+              <td>{{product.seller.user.username}}</td>
+              <td>{{product.status}}</td>
+              <td><button type="button" onclick="window.location.href='{% url 'productDetails' product.id %}'" class="btn btn-warning" >Approve</button></td>
+              <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#example{{forloop.counter}}">Details</button></td>
+            </tr>
+            {% else %}
+            <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{product.name}}</td>
+                <td>{{product.seller.user.username}}</td>
+                <td>{{product.status}}</td>
+                <!-- <td><a href="{% url 'productDetails' product.id %}" >Approve</a></td> -->
+                <td><button type="button" onclick="window.location.href='{% url 'productDetails' product.id %}'" class="btn btn-warning" >Approve</button></td>
+                <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#example{{forloop.counter}}">Details</button></td>
+              </tr>
+          {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

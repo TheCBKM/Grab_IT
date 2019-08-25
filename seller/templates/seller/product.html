@@ -1,0 +1,318 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+     <!-- Favicons -->
+  <!--<link href="{% static 'img/favicon.png' %}" rel="icon">-->
+  <!--<link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">-->
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800|Montserrat:300,400,700"
+    rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="{% static 'lib/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/ionicons/css/ionicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/magnific-popup/magnific-popup.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/ionicons/css/ionicons.min.css' %}" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+<style>
+  html, body{
+    height: 100%;
+  }
+  .username{
+    text-align: center;
+    color: #e74c3c;
+    font-family: cursive;
+    font-size: calc( 1em + 1vh );
+  }
+     #pro {
+      color: #0c2e8a;
+      line-height: 1;
+      display: inline-block;
+
+    }
+
+#pro span {
+  color: #50d8af;
+}
+</style>
+    <title>Product</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        function chSubCat(){
+            var a= document.getElementById('category').value;
+            document.getElementById('sub-category').innerHTML = "<option value='-1' >Please select category</option>"
+            document.getElementById('product').innerHTML = "<option value='-1' >Please select subcategory</option>"
+            if(a==3){
+              document.getElementById('sub-category').disabled = true;
+              document.getElementById('product').disabled = true;
+
+              document.getElementById('addProduct').innerHTML = `<div class="form-group">
+                  <div class="form-group">
+                    <label for="Name">Add Product</label>
+                    <input type="Text" name="addNewProduct" class="form-control" id="inputPassword4" placeholder="Product Name">
+                  </div>
+                </div>`
+            }
+            else{
+              document.getElementById('addProduct').innerHTML = ``
+              document.getElementById('sub-category').disabled = false;
+              document.getElementById('product').disabled = false;
+
+            axios.get('category/'+a)
+            .then(res=>{
+              document.getElementById('sub-category').innerHTML=res.data;
+                console.log(res);
+            })
+            .catch(e=>{
+                console.log(e);
+            })
+          }
+        }
+
+        function chProduct(){
+          var a= document.getElementById('sub-category').value;
+          if(a==4){
+            document.getElementById('product').innerHTML = "<option value='-1' >Please select subcategory</option>"
+            document.getElementById('product').disabled = true;
+
+            document.getElementById('addProduct').innerHTML = `<div class="form-group">
+                <div class="form-group">
+                  <label for="Name">Add Product</label>
+                  <input type="Text" name="addNewProduct" class="form-control" id="inputPassword4" placeholder="Product Name" required >
+                </div>
+              </div>`
+          }
+          else{
+            document.getElementById('addProduct').innerHTML =''
+            document.getElementById('product').disabled = false;
+          //alert(a);
+          axios.get('subcategory/'+a)
+          .then(res=>{
+            document.getElementById('product').innerHTML=res.data;
+              console.log(res);
+          })
+          .catch(e=>{
+              console.log(e);
+          })
+        }
+      }
+
+      function chNewProduct(){
+        a = document.getElementById('product').value;
+        if(a=='o'){
+          document.getElementById('addProduct').innerHTML=`<div class="form-group">
+              <div class="form-group">
+                <label for="Name">Add Product</label>
+                <input type="Text" name="addNewProduct" class="form-control" id="inputPassword4" placeholder="Product Name" required >
+              </div>
+            </div>`
+        }
+        else{
+          document.getElementById('addProduct').innerHTML=``
+
+        }
+      }
+
+
+    </script>
+
+  </head>
+  <body>
+
+      <header id="header">
+          <div class="container">
+
+            <div id="logo" class="pull-left">
+              <h1><a href="#body" class="scrollto">Grab<span>IT</span></a></h1>
+              <!-- Uncomment below if you prefer to use an image logo -->
+              <!-- <a href="#body"><img src="img/logo.png" alt="" title="" /></a>-->
+            </div>
+            <div class="username" id="pro">< {{user.username}} ></a></div>
+
+            <nav id="nav-menu-container">
+              <ul class="nav-menu">
+                <li class="menu"><a href="/">Home</a></li>
+                <li class="menu-active"><a href="#">Add-Product</a></li>
+                <li><a href="/seller/sellerhome">My-Cart</a></li>
+                <li><a href="/logout/">Logout</a></li>
+
+              </ul>
+            </nav><!-- #nav-menu-container -->
+          </div>
+        </header>
+        <!-- #header -->
+      <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <a class="navbar-brand" href="#">Grab_IT</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item ">
+                    <a class="nav-link" style="color: rgb(98, 173, 17); font-family:cursive; " href="#"><b>Hey {{user.username}} </b><span class="sr-only">(current)</span></a>
+                  </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="/addProduct/">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/seller/sellerhome">My-cart <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-0">
+            <li class="nav-item active ">
+              <a class="nav-link" href="/logout/">Logout</a>
+            </li>
+            </ul>
+          </div>
+        </nav> -->
+    <!-- <h2>{{user.id}}</h2> -->
+    <center><h1 id="pro" style="text-align: center;">ADD YOUR P<span>RODUCT</span></a></h1></center>
+      <div class="container" style="width:70%">
+    <form action="sendProduct" method="POST" enctype="multipart/form-data" >
+        {% csrf_token %}
+        <!-- <div class="form-group">
+          <div class="form-group">
+            <label for="Name">Name</label>
+            <input type="Text" name="name" class="form-control" id="inputPassword4" placeholder="Product Name">
+          </div>
+        </div> -->
+        <div class="form-group" >
+          <label for="inputCity">Price</label>
+          <input type="text" name="price" class="form-control" id="inputCity" placeholder="Expected Price" required>
+        </div>
+        <div class="form-row">
+
+          <div class="form-group col-md-4">
+            <label for="inputState">Category</label>
+            <select id="category" name="category" class="form-control" onchange="chSubCat()" required>
+              <option selected value="-1">Choose...</option>
+              {% for c in category %}
+              <option value="{{c.id}}">{{c.name}}</option>
+              {% endfor %}
+              <!-- <option value="o">others</option> -->
+
+            </select>
+          </div>
+          <div class="form-group col-md-4">
+                <label for="inputState">SubCategory</label>
+                <select id="sub-category" name="subcategory"  class="form-control" onchange="chProduct()" required>
+                  <option selected value="-1">Choose...</option>
+
+                </select>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="inputState">Product</label>
+                <select  id="product" name="product" class="form-control" onchange="chNewProduct()" required>
+                  <option selected value="-1" >Choose...</option>
+
+                </select>
+              </div>
+
+        </div>
+        <div id="addProduct">
+
+        </div>
+        <div class="form-row">
+        <div class="form-group col-md-6">
+                <label for="inputZip">Contact</label>
+                <input type="text" name="contact" pattern="[1-9]{1}[0-9]{9}" class="form-control" id="inputZip" placeholder="contact" required>
+                Buyer will contact on this no.
+              </div>
+        <div class="form-group col-md-6">
+                <label for="exampleFormControlFile1">Upload Image</label>
+                <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1" required>
+              </div>
+            </div>
+
+        <button type="submit" class="btn btn-primary">Upload</button>
+      </form>
+      {% for message in messages %}
+      <h5 style="color:red; text-align:center;">{{message}}</h5>
+      {% endfor %}
+    </div>
+
+      <!--==========================
+    Footer
+  ============================-->
+  <div style="position: relative;bottom:0;width:100%;">
+      <footer id="footer" >
+        <div class="container">
+          <div class="copyright">
+            &copy; Copyright <strong>CBKM</strong>. All Rights Reserved
+          </div>
+          <div class="credits">
+
+            Designed by CBKM
+          </div>
+        </div>
+      </footer><!-- #footer -->
+    </div>
+      <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+      <!-- JavaScript Libraries -->
+      <script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
+      <script src="{% static 'lib/jquery/jquery-migrate.min.js' %}"></script>
+      <script src="{% static 'lib/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+      <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+      <script src="{% static 'lib/superfish/hoverIntent.js' %}"></script>
+      <script src="{% static 'lib/superfish/superfish.min.js' %}"></script>
+      <script src="{% static 'lib/wow/wow.min.js' %}"></script>
+      <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+      <script src="{% static 'lib/magnific-popup/magnific-popup.min.js' %}"></script>
+      <script src="{% static 'lib/sticky/sticky.js' %}"></script>
+
+      <!-- Contact Form JavaScript File -->
+      <script src="contactform/contactform.js"></script>
+
+      <!-- Template Main Javascript File -->
+      <script src="{% static 'js/main.js' %}"></script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+
+
+<!-- <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    category
+    {% for c in category %}
+    {{c.name}}<br>
+    {% endfor %}
+    <br>
+    SubCategory
+    <br>
+    {% for s in subCategory %}
+    {{s.name}}<br>
+    {% endfor %}
+
+</body>
+</html> -->
