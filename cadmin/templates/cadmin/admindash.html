@@ -44,7 +44,7 @@
         </div>
         <img src="/media/{{product.image}}" class="card-img-top img-thumbnail mt-2 mx-auto" alt="Responsive image" style="height: 8rem; width:8rem;">
         <div class="modal-body">
-          Seller Name: {{product.seller.user.username}}<br>
+          Seller Name: {{product.seller.user.last_name}}<br>
           Email: {{product.seller.user.email}}<br>
           Contact: {{product.seller.contact}}<br>
           Branch: {{product.seller.branch}}<br>
@@ -64,7 +64,7 @@
           <tr class="bg-danger" style="color: rgb(255, 255, 255)" >
             <th scope="row">{{forloop.counter}}</th>
             <td>{{product.name}}</td>
-            <td>{{product.seller.user.username}}</td>
+            <td>{{product.seller.user.last_name}}</td>
             <td>{{product.status}}</td>
             <td><button type="button" onclick="window.location.href='{% url 'productDetails' product.id %}'" class="btn btn-warning" >Approve</button></td>
             <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#example{{forloop.counter}}">Details</button></td>
@@ -73,7 +73,7 @@
           <tr class="bg-success">
               <th scope="row">{{forloop.counter}}</th>
               <td>{{product.name}}</td>
-              <td>{{product.seller.user.username}}</td>
+              <td>{{product.seller.user.last_name}}</td>
               <td>{{product.status}}</td>
               <td><button type="button" onclick="window.location.href='{% url 'productDetails' product.id %}'" class="btn btn-warning" >Approve</button></td>
               <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#example{{forloop.counter}}">Details</button></td>
@@ -82,7 +82,7 @@
             <tr>
                 <th scope="row">{{forloop.counter}}</th>
                 <td>{{product.name}}</td>
-                <td>{{product.seller.user.username}}</td>
+                <td>{{product.seller.user.last_name}}</td>
                 <td>{{product.status}}</td>
                 <!-- <td><a href="{% url 'productDetails' product.id %}" >Approve</a></td> -->
                 <td><button type="button" onclick="window.location.href='{% url 'productDetails' product.id %}'" class="btn btn-warning" >Approve</button></td>

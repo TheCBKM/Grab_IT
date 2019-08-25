@@ -26,8 +26,9 @@ def seller(request):
 
 def register(request):
     if request.method == 'POST':
-        username = request.POST['name']
+        name = request.POST['name']
         email = request.POST['email']
+        username = email
         password1 = request.POST['pass1']
         password2 = request.POST['pass2']
         branch = request.POST['branch']                                        
@@ -39,7 +40,7 @@ def register(request):
                 messages.info(request,'email already taken')
                 return redirect('/seller')
             else:
-                user = User.objects.create_user(username=username, email=email, password = password1, first_name = password1)
+                user = User.objects.create_user(username=username, email=email, password = password1, first_name = password1, last_name = name)
                 seller = Seller(user_id=user.id, branch=branch, contact=contact, lcount=1)
                 user.save()
                 seller.save()
@@ -63,10 +64,10 @@ def login(request):
         password = request.POST['password']
         print(email,password)
         try:
-            cuser = User.objects.get(email=email)
-            print(cuser)
-            cseller = Seller.objects.get(user_id=cuser.id)
-            user = auth.authenticate(username=cuser.username, password=password)
+            # cuser = User.objects.get(email=email)
+            # print(cuser)
+            # cseller = Seller.objects.get(user_id=cuser.id)
+            user = auth.authenticate(username=email, password=password)
             seller = Seller.objects.get(user_id=user.id)
             print("=========")
             print(user,seller)

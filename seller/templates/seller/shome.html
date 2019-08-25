@@ -9,39 +9,50 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
-        nav > .nav.nav-tabs{
+      nav>.nav.nav-tabs {
 
-            border: none;
-              color:#fff;
-              background:#272e38;
-              border-radius:0;
+          border: none;
+          color: #fff;
+          background: #272e38;
+          border-radius: 0;
 
-          }
-          nav > div a.nav-item.nav-link,
-          nav > div a.nav-item.nav-link.active
-          {
-            border: none;
-              padding: 18px 25px;
-              color:#fff;
-              background:#272e38;
-              border-radius:0;
-          }
+      }
+
+      nav>div a.nav-item.nav-link {
+
+          border: none;
+          padding: 18px 25px;
+          color: #fff;
+          background: #272e38;
+          border-radius: 0;
+
+      }
+
+      nav>div a.nav-item.nav-link.active {
+          border: none;
+          padding: 18px 25px;
+          color: #fff;
+          background: #272e38;
+          border-radius: 0;
+          background-color: #e74c3c;
+      }
 
 
-          .tab-content{
-            background: #fdfdfd;
+      .tab-content {
+          background: #fdfdfd;
 
-          }
+      }
 
-          nav > div a.nav-item.nav-link:hover,
-          nav > div a.nav-item.nav-link:focus
-          {
-            border: none;
-              background: #e74c3c;
-              color:#fff;
-              border-radius:0;
-              transition:background 0.20s linear;
-          }
+      nav>div a.nav-item.nav-link:hover,
+      nav>div a.nav-item.nav-link:focus {
+          border: none;
+          background: #e74c3c;
+          color: #fff;
+          border-radius: 0;
+          transition: background 0.20s linear;
+
+      }
+
           .username{
             text-align: center;
             color: #e74c3c;
@@ -102,7 +113,7 @@
               <!-- <a href="#body"><img src="img/logo.png" alt="" title="" /></a>-->
             </div>
 
-            <div class="username" id="pro">< {{user.username}} ></a></div>
+            <div class="username" id="pro">< {{user.last_name}} ></a></div>
 
             <nav id="nav-menu-container" >
               <ul class="nav-menu">
@@ -157,7 +168,14 @@
             <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
 
               <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                 <div class="row">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <center><b>Have patience your product will be approved soon :)</b></center>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                
+                </div>
+                <div class="row">
                    {% for product in products %}
                         {% if product.status == 0 or product.status == 3 or  product.status == 4  %}
 

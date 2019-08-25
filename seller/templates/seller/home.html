@@ -37,6 +37,20 @@
 
   <script  src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.dev.js"></script>
   <script src="{% static './util.js' %}"></script>
+
+  <style>
+    .blinking{
+      animation:blinkingText 1s infinite;
+  }
+  @keyframes blinkingText{
+      0%{     color: rgb(4, 78, 238);;    }
+      49%{    color: rgb(122, 6, 230); }
+      50%{    color: rgb(64, 241, 10); }
+      99%{    color:  rgb(245, 7, 7);}
+      100%{   color: rgb(253, 7, 7);    }
+  }
+  
+  </style>
     <!-- <script>
 var  socket = io('https://cbkm-analytics-services.herokuapp.com');
 function  wow() {
@@ -118,11 +132,15 @@ window.location.href = "index.html"
         <a   onclick="send('IWBUY')" href='/buyer/' class="btn-projects scrollto">I want to Buy</a>
       </div>
       <div class="abc">
-        <a  href='/seller/' class="btn-get-started scrollto" style="background-color: rgb(194, 202, 202); color:black;">Hits on site : {{count}}</a>
+        <a  class="btn-get-started scrollto"  style="background-color: rgb(243, 240, 88);"><span class="blinking">
+          Hits on site : {{count}}</span>
+        </a>
        
       </div>
       <div class="abc">
-        <a  href='/seller/' class="btn-get-started scrollto" style="background-color: rgb(194, 202, 202); color:black;">Users : {{users}}</a>
+        <a  class="btn-get-started scrollto"  style="background-color: rgb(243, 240, 88);"><span class="blinking">
+          Users : {{users}}</span>
+        </a>
        
       </div>
     </div>
