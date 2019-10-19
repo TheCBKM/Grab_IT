@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
-from . models import Seller, Category, SubCategory, Product, Pcount
+from . models import Seller, Category, SubCategory, Product, Pcount, Request
 
 
 # Create your views here.
@@ -69,14 +69,15 @@ def login(request):
             # cseller = Seller.objects.get(user_id=cuser.id)
             user = auth.authenticate(username=email, password=password)
             seller = Seller.objects.get(user_id=user.id)
-            print("=========")
             print(user,seller)
-            print("========")
             if user is not None:
                
                 if seller.isadmin == 1:
                     auth.login(request,user)
                     return redirect('dashboard')
+                elif seller.isadmin == 3:
+                    auth.login(request,user)
+                    return redirect('requestadmin')    
                 else:
                     auth.login(request,user)
                     c = seller.lcount + 1
@@ -275,6 +276,16 @@ def subcategory(request, cat_id):
     
     return render(request,'seller/buyproduct.html', context)
 
+def request(request):
+    if request.method == 'POST':
+        name = request.POST['name']
+        contact = request.POST['contact']
+        pid = request.POST['product']
+        product = Product.objects.get(id = pid)
+        r = Request(product = product, name = name, contact = contact)
+        r.save()
+        # print(name + contact + product.id)
+        return render(request,'seller/thanx.html')
 # def error_404(request, exception):
 #     return HttpResponse('Hello 404')
 

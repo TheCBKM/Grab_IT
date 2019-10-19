@@ -20,5 +20,6 @@ urlpatterns = [
     # Buyer
     path('buyer/',views.buyer, name='buyer'),
     path('buyer/subcategory/<cat_id>',views.subcategory, name ='subcategory'),
+    path('buyer/request',views.request, name='request'),
 ]
 

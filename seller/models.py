@@ -2,6 +2,27 @@ from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image 
 from io import BytesIO
+import datetime
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 from django.core.files.uploadedfile import InMemoryUploadedFile
 import sys
 
@@ -63,11 +84,21 @@ class Product(models.Model):
     def __str__(self):
         return self.name + '/'+ str(self.id)
 
+class Request(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, default='')
+    name = models.CharField(max_length=20, default='')
+    contact = models.IntegerField(default=0)
+    date = models.DateField(auto_now_add=True)
+
+    
+
 class Pcount(models.Model):
     count = models.IntegerField(default=0)
 
     def __str__(self):
         return str(self.count)
+
+
 
 
    # Grab_IT1565642939041                                                                                

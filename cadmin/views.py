@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from seller.models import Seller, Category, SubCategory, Product 
+from seller.models import Seller, Category, SubCategory, Product, Request
 from django.http import HttpResponse
 from . import views
 # Create your views here.
@@ -8,7 +8,7 @@ def admindash(request):
         return redirect('seller')
     else:
 
-        products = Product.objects.all()
+        products = Product.objects.all().order_by()[::-1] 
         context = {'products':products}
         print(products)
         return render(request, 'cadmin/admindash.html', context)
@@ -107,7 +107,6 @@ def adminHelp(request):
     if not request.user.is_authenticated:
         return redirect('seller')
     else:
-
         category = Category.objects.all()
         subcategory = SubCategory.objects.all()
         product = Product.objects.all()
@@ -117,3 +116,13 @@ def adminHelp(request):
             'categorys':category
         }
         return render(request,'cadmin/adminHelp.html',context)
+
+def requestAdmin(request):
+    if not request.user.is_authenticated:
+        return redirect('seller')
+    else:
+        details = Request.objects.all().order_by()[::-1] 
+        context = {
+            'details':details
+        }
+        return render(request,'cadmin/requestadmin.html',context)
